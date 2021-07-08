@@ -39,6 +39,8 @@ public class SimpleTopicExtractor implements TopicExtractor {
 
         //remove all punctuation marks
         normalisedString = normalisedString.replaceAll("\\p{Punct}", "");
+        //normalise possessive nouns
+        normalisedString = normalisedString.replaceAll("’s", "");
 
         //remove stop words from the normalised string
         TokenizerFactory factory = IndoEuropeanTokenizerFactory.INSTANCE;
