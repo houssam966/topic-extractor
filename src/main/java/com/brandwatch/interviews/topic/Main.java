@@ -12,10 +12,12 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.converters.FileConverter;
 
 import com.brandwatch.interviews.topic.ascii.AsciiTitleGenerator;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(
         scanBasePackages = "com.brandwatch.interviews.topic"
 )
+@EnableAsync
 public class Main implements CommandLineRunner {
 
     @Autowired

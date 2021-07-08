@@ -3,6 +3,7 @@ package com.brandwatch.interviews.topic;
 import java.io.File;
 import java.io.IOException;
 
+import com.brandwatch.interviews.topic.textProcessors.TextProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +20,15 @@ public class DemoImpl implements Demo {
     private TopicExtractor extractor;
     @Autowired
     private TopicResultsPrinter printer;
+    @Autowired
+    private TextProcessor textProcessor;
 
     public void runDemo(File file) {
 
         try {
             String inputText = provider.readText(file);
-            TopicResults results = extractor.extract(inputText);
+            String normalisedString = textProcessor.normalise(inputText);
+            TopicResults results = extractor.extract(normalisedString);
             printer.print(results);
         } catch (IOException e) {
             System.err.println(e);
